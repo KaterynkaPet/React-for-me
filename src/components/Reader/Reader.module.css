@@ -1,0 +1,19 @@
+.container {
+    padding: 15px;
+}
+
+.header {
+    display: flex;
+    
+    gap: 40px;
+    align-items: center;
+}
+.btnSection {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    border-radius: 8px;
+    cursor: pointer;
+}
