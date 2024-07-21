@@ -1,10 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import css from './Reader.module.css'
 import Progress from '../Progress/Progress';
 
+const getInitialIndex = () => {
+    const savedIndex = localStorage.getItem('article-index');
+    if (savedIndex !== null) {
+        return JSON.parse(savedIndex);
+    }
+    
+    return 0;
+};
+
 
 export default function Reader({items}) {
-    const [index, setIndex] = useState(0)
+    const [index, setIndex] = useState(getInitialIndex);
 
     const handlePrev = () => {        
         setIndex(index - 1);
@@ -17,6 +26,10 @@ export default function Reader({items}) {
     const isFirst = index === 0;
     const isLast = index === items.length - 1;
     const currentArticle = items[index];
+
+    useEffect(() => {
+localStorage.setItem('article-index', index)
+    }, [index])
            
     return <div className={css.container}>
         <header className={css.header}>
